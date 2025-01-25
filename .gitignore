@@ -1,0 +1,8 @@
+*~
+\#*
+.\#*
+.DS_Store
+compiled/
+/doc/
+priv/
+metadata.json
