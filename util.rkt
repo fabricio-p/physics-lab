@@ -13,7 +13,7 @@
 (provide base-directory call-with-fresh-out-file write-csv-to
          write-json-to
 
-         covariance variance array-all-mean rows-mean
+         covariance variance array-mean array-all-mean rows-mean
 
          (struct-out regression-estimate) simple-linear-regression)
 
@@ -43,6 +43,10 @@
 (define (rows-mean xs)
   (match-let ([(vector rows _) (array-shape xs)])
     (array/ (array-axis-sum xs 0) (array #[(exact->inexact rows)]))))
+
+(define (array-mean xs axis)
+  (define n (vector-ref (array-shape xs) axis))
+  (array/ (array-axis-sum xs axis) (array #[(exact->inexact n)])))
 
 (struct regression-estimate (a b std-a std-b) #:transparent)
 
